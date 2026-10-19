@@ -1,0 +1,146 @@
+/* ==========================================================
+   STYLE.CSS - o aspeto da página
+   Estrutura:
+     1. Cores e base
+     2. Cabeçalho e pesquisa
+     3. Secções e grelha
+     4. Cartão de jogo
+     5. Preços e detalhes
+   ========================================================== */
+
+
+/* ---------- 1. CORES E BASE ---------- */
+/* Variáveis: mudas a cor aqui e muda em toda a página */
+:root {
+  --fundo: #121722;
+  --cartao: #1c2333;
+  --cartao-borda: #2b3550;
+  --texto: #e8ecf5;
+  --texto-suave: #8f9bb3;
+  --azul: #4c8bf5;
+  --verde: #4cd98a;
+  --amarelo: #f5c04c;
+  --vermelho: #ef5b5b;
+}
+
+* { box-sizing: border-box; }   /* o tamanho inclui margens internas: mais fácil de prever */
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+main { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
+.nota { color: var(--texto-suave); font-size: 13px; }
+
+
+/* ---------- 2. CABEÇALHO E PESQUISA ---------- */
+.topo {
+  text-align: center;
+  padding: 36px 20px 30px;
+  background: linear-gradient(135deg, #1b2a4a, #121722);   /* fundo com degradê */
+  border-bottom: 1px solid var(--cartao-borda);
+  margin-bottom: 30px;
+}
+.topo h1 { margin: 0 0 6px; font-size: 32px; }
+.topo p { margin: 0 0 22px; color: var(--texto-suave); }
+
+.pesquisa {
+  display: flex; gap: 10px;
+  max-width: 560px; margin: 0 auto;
+}
+.pesquisa input {
+  flex: 1; padding: 13px 16px;
+  border-radius: 10px; border: 1px solid var(--cartao-borda);
+  background: var(--cartao); color: var(--texto); font-size: 16px;
+}
+.pesquisa input:focus { outline: 2px solid var(--azul); }
+
+button {
+  padding: 10px 18px; border: none; border-radius: 10px;
+  background: var(--azul); color: white; font-size: 14px; font-weight: bold;
+  cursor: pointer; transition: filter 0.15s;
+}
+button:hover { filter: brightness(1.15); }
+button.remover { background: transparent; border: 1px solid var(--vermelho); color: var(--vermelho); }
+
+
+/* ---------- 3. SECÇÕES E GRELHA ---------- */
+.titulo-secao {
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 1px solid var(--cartao-borda);
+  margin: 10px 0 18px;
+}
+h2 { font-size: 20px; margin: 0 0 8px; }
+.contador {
+  background: var(--cartao); border-radius: 20px;
+  padding: 2px 10px; font-size: 13px; color: var(--texto-suave);
+}
+
+/* Grelha: cria colunas automáticas (3 num ecrã grande, 1 no telemóvel) */
+.grelha {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+  margin-bottom: 36px;
+}
+.vazio { color: var(--texto-suave); grid-column: 1 / -1; text-align: center; padding: 20px; }
+
+
+/* ---------- 4. CARTÃO DE JOGO ---------- */
+.cartao {
+  background: var(--cartao);
+  border: 1px solid var(--cartao-borda);
+  border-radius: 12px;
+  overflow: hidden;                 /* corta a imagem nos cantos redondos */
+  display: flex; flex-direction: column;
+  transition: transform 0.15s;
+}
+.cartao:hover { transform: translateY(-3px); }   /* sobe um pouco ao passar o rato */
+
+.capa { position: relative; }
+.capa img { width: 100%; display: block; background: #0d111a; min-height: 100px; }
+
+/* Etiqueta de desconto por cima da imagem */
+.etiqueta {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--verde); color: #0b1a12;
+  padding: 4px 10px; border-radius: 6px; font-weight: bold;
+}
+
+.corpo { padding: 14px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.titulo { margin: 0; font-size: 16px; line-height: 1.3; }
+.titulo a { color: var(--texto); text-decoration: none; }
+.titulo a:hover { color: var(--azul); }
+
+/* Os dois botões ficam lado a lado, no fundo do cartão */
+.botoes { margin-top: auto; display: flex; gap: 8px; }
+.botoes button { flex: 1; }
+button.secundario { background: transparent; border: 1px solid var(--cartao-borda); color: var(--texto); }
+
+/* Zona dos requisitos de hardware */
+.requisitos { font-size: 13px; background: #151b2a; border-radius: 8px; padding: 12px; }
+.requisitos[hidden] { display: none; }     /* garante que fica escondida quando tem "hidden" */
+.req-descricao { margin: 0 0 8px; color: var(--texto); }
+.req-info { margin: 0 0 12px; color: var(--texto-suave); }
+.req-bloco h4 { margin: 0 0 4px; color: var(--azul); }
+.req-bloco p { margin: 0 0 12px; white-space: pre-line; color: var(--texto-suave); }  /* pre-line respeita as quebras de linha */
+
+
+/* ---------- 5. PREÇOS E DETALHES ---------- */
+.bloco-preco { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.preco { font-size: 26px; font-weight: bold; color: var(--verde); }
+.preco.normal { color: var(--texto); }       /* sem desconto: preço branco */
+.antigo { color: var(--texto-suave); text-decoration: line-through; }
+.gratis { font-size: 20px; font-weight: bold; color: var(--amarelo); }
+.poupanca { margin: 0; color: var(--amarelo); font-size: 14px; }
+
+/* Tabela de detalhes (linha com nome à esquerda e valor à direita) */
+.detalhes { margin: 0; padding-top: 10px; border-top: 1px solid var(--cartao-borda); font-size: 13px; }
+.detalhes div { display: flex; justify-content: space-between; padding: 3px 0; }
+.detalhes dt { color: var(--texto-suave); }
+.detalhes dd { margin: 0; font-weight: bold; }
+.sobe  { color: var(--vermelho); }    /* preço subiu */
+.desce { color: var(--verde); }       /* preço desceu */

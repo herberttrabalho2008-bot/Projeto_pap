@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- Diz ao browser que isto é uma página HTML moderna (HTML5) -->
+<html lang="pt"> <!-- lang="pt": idioma da página (ajuda tradutores e leitores de ecrã) -->
+
+<!-- HEAD: informação "invisível" sobre a página -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Monitor de Preços - Steam</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- BODY: tudo o que aparece na página -->
+<body>
+
+  <!-- ===== CABEÇALHO ===== -->
+  <!-- <header> é o topo da página -->
+  <header class="topo">
+    <h1>🎮 Monitor de Preços</h1>   <!-- h1 = título principal (só deve haver um) -->
+    <p>Preços reais da Steam Portugal, em euros</p>
+
+    <!-- Barra de pesquisa -->
+    <div class="pesquisa">
+      <!-- <input>: caixa de texto. O "id" permite ao JavaScript encontrá-la -->
+      <input id="caixaPesquisa" type="text" placeholder="Procurar jogo... (ex: Hades, Elden Ring)">
+      <button id="botaoPesquisar">🔍 Pesquisar</button>
+    </div>
+  </header>
+
+  <!-- <main> é o conteúdo principal da página -->
+  <main>
+
+    <!-- ===== JOGOS SEGUIDOS ===== -->
+    <!-- <section> agrupa uma parte do conteúdo -->
+    <section>
+      <div class="titulo-secao">
+        <!-- Os <span> vazios são preenchidos pelo JavaScript (contador e hora) -->
+        <h2>⭐ Os meus jogos <span id="contaSeguidos" class="contador"></span></h2>
+        <span id="ultimaAtualizacao" class="nota"></span>
+      </div>
+      <!-- Esta div começa vazia: o JavaScript põe aqui os cartões -->
+      <div id="seguidos" class="grelha"></div>
+    </section>
+
+    <!-- ===== RESULTADOS DA PESQUISA ===== -->
+    <section>
+      <div class="titulo-secao">
+        <h2>🔎 Resultados <span id="contaResultados" class="contador"></span></h2>
+      </div>
+      <div id="resultados" class="grelha">
+        <p class="vazio">Pesquisa um jogo para começar.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- O JavaScript fica no FIM do body, para que os elementos acima
+       já existam quando o código tenta encontrá-los -->
+  <script src="script.js"></script>
+</body>
+</html>
